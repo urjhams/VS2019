@@ -14,13 +14,42 @@ import AnyChartiOS
 class ViewController: UIViewController {
     
     @IBOutlet weak var chartView: UIView!
+    @IBOutlet weak var legendCollectionView: UICollectionView!
+    
     var chartPoints: Array<ChartPoint> = [ChartPoint]()
     var chartXLabels = [ChartAxisValue]()
     
     fileprivate var chart: Chart?
     
+    let colors: [NSUIColor] = [
+        UIColor.blue.withAlphaComponent(0.8),
+        UIColor.green.withAlphaComponent(0.8),
+        UIColor.red.withAlphaComponent(0.8),
+        UIColor.cyan.withAlphaComponent(0.8),
+        UIColor.brown.withAlphaComponent(0.8),
+        UIColor.black.withAlphaComponent(0.8),
+        UIColor.yellow.withAlphaComponent(0.8),
+        UIColor.gray.withAlphaComponent(0.8),
+        UIColor.magenta.withAlphaComponent(0.8),
+    ]
+    
+    let name = [
+        "Calories from Fat",
+        "total Fat",
+        "Sodium",
+        "Potasium",
+        "total Carbon-hydrate",
+        "Sugar",
+        "Protein",
+        "saturated Fat",
+        "Cholesterol"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        legendCollectionView.delegate = self
+        legendCollectionView.dataSource = self
         
         let labelDefaultSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         
@@ -103,7 +132,7 @@ class ViewController: UIViewController {
                                                        height: viewSize))
 
 //            chart.addTarget(target: self, action: #selector(self.onClickPieChart(event:)), fields: ["x", "value"])
-
+            
             let position = Int(chartPointModel.chartPoint.description.components(separatedBy: ",")[0])!
             if (position != 0 && position != self.chartXLabels.count - 1){
                 let objs = Static.calories
@@ -129,23 +158,11 @@ class ViewController: UIViewController {
                             protein,
                             saturatedFat,
                             cholesterol]
-                let alpha:CGFloat = 0.8
-                let colors = [
-                    UIColor.red.withAlphaComponent(alpha),
-                    UIColor.green.withAlphaComponent(alpha),
-                    UIColor.blue.withAlphaComponent(alpha),
-                    UIColor.cyan.withAlphaComponent(alpha),
-                    UIColor.brown.withAlphaComponent(alpha),
-                    UIColor.black.withAlphaComponent(alpha),
-                    UIColor.yellow.withAlphaComponent(alpha),
-                    UIColor.gray.withAlphaComponent(alpha),
-                    UIColor.magenta.withAlphaComponent(alpha),
-                ]
                 
                 let dataSet = PieChartDataSet(entries: data, label: nil)
                 let chartData = PieChartData(dataSet: dataSet)
                 chartData.setValueTextColor(NSUIColor.init(displayP3Red: 0, green: 0, blue: 0, alpha: 0))
-                dataSet.colors = colors
+                dataSet.colors = self.colors
                 pointView.legend.enabled = false
                 pointView.drawHoleEnabled = false
                 pointView.data = chartData
@@ -182,6 +199,20 @@ class ViewController: UIViewController {
         print(event["x"]!)
         print(event["value"]!)
     }
+}
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return name.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "legnedCell", for: indexPath) as! LegendCollectionViewCell
+        cell.colorImg.backgroundColor = colors[indexPath.item]
+        cell.nameText.text = name[indexPath.item]
+        return cell
+    }
+    
     
 }
 

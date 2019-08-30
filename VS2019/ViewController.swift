@@ -28,8 +28,8 @@ class ViewController: UIViewController {
         UIColor.red.withAlphaComponent(0.8),
         UIColor.cyan.withAlphaComponent(0.8),
         UIColor.brown.withAlphaComponent(0.8),
-        UIColor.black.withAlphaComponent(0.8),
-        UIColor.yellow.withAlphaComponent(0.8),
+        UIColor.darkGray.withAlphaComponent(0.8),
+        UIColor.lightGray.withAlphaComponent(0.8),
         UIColor.gray.withAlphaComponent(0.8),
         UIColor.magenta.withAlphaComponent(0.8),
     ]
@@ -103,7 +103,6 @@ class ViewController: UIViewController {
             chartPoints.append(ChartPoint(x: ChartAxisValueDouble(currentHorizontalPosition),
                                           y: ChartAxisValueDouble(obj.calories)))
             currentHorizontalPosition += 1
-            print(obj.name)
             chartXLabels.append(ChartAxisValueString(obj.name.components(separatedBy: ",")[0],
                                                      order: currentOrder,
                                                      labelSettings: labelSettings.defaultVertical()))
@@ -159,15 +158,15 @@ class ViewController: UIViewController {
                 let foodObj = objs[position - 1]
                 
                 // data
-                let caloriesFromFat = PieChartDataEntry(value: foodObj.caloriesFromFat)
-                let totalFat = PieChartDataEntry(value: foodObj.totalFat)
-                let sodium = PieChartDataEntry(value: foodObj.Sodium)
-                let potasium = PieChartDataEntry(value: foodObj.potasium)
-                let totalCarbonHydrate = PieChartDataEntry(value: foodObj.totalCarboHydrate)
-                let sugars = PieChartDataEntry(value: foodObj.sugars)
-                let protein = PieChartDataEntry(value: foodObj.protein)
-                let saturatedFat = PieChartDataEntry(value: foodObj.saturatedFat)
-                let cholesterol = PieChartDataEntry(value: foodObj.cholesterol)
+                let caloriesFromFat = PieChartDataEntry(value: foodObj.caloriesFromFat, label: "calories from fat")
+                let totalFat = PieChartDataEntry(value: foodObj.totalFat, label: "total fat")
+                let sodium = PieChartDataEntry(value: foodObj.Sodium, label: "sodium")
+                let potasium = PieChartDataEntry(value: foodObj.potasium, label: "potasium")
+                let totalCarbonHydrate = PieChartDataEntry(value: foodObj.totalCarboHydrate, label: "total Carbon-hydrate")
+                let sugars = PieChartDataEntry(value: foodObj.sugars, label: "sugars")
+                let protein = PieChartDataEntry(value: foodObj.protein, label: "protein")
+                let saturatedFat = PieChartDataEntry(value: foodObj.saturatedFat, label: "saturated fat")
+                let cholesterol = PieChartDataEntry(value: foodObj.cholesterol, label: "cholesterol")
                 
                 let data = [caloriesFromFat,
                             totalFat,
@@ -183,10 +182,15 @@ class ViewController: UIViewController {
                 let chartData = PieChartData(dataSet: dataSet)
                 chartData.setValueTextColor(NSUIColor.init(displayP3Red: 0, green: 0, blue: 0, alpha: 0))
                 dataSet.colors = self.colors
+                
                 pointView.legend.enabled = false
                 pointView.drawHoleEnabled = false
                 pointView.highlightPerTapEnabled = false
                 pointView.data = chartData
+                
+                let doubleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.doubleTap(sender:)))
+                doubleTap.numberOfTapsRequired = 2
+                pointView.addGestureRecognizer(doubleTap)
             }
             
             return pointView
@@ -223,10 +227,13 @@ class ViewController: UIViewController {
                                                          yAxisLayer: yAxisLayer,
                                                          settings: guidelinesLayerSettings)
     }
-
-    @objc private func onClickPieChart(event: NSDictionary) {
-        print(event["x"]!)
-        print(event["value"]!)
+    
+    @objc func doubleTap(sender: UIGestureRecognizer) {
+        if let view = sender.view as? PieChartView {
+            let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popup") as! PopUpViewController
+            destination.chartData = (view.data as! PieChartData)
+            self.present(destination, animated: true, completion: nil)
+        }
     }
 }
 
@@ -272,3 +279,4 @@ extension ViewController: UISearchBarDelegate {
         return true
     }
 }
+

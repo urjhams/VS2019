@@ -15,6 +15,7 @@
 		4F518BEA2316C79F0034AB20 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F518BE92316C79F0034AB20 /* Env.swift */; };
 		4F518C26231892200034AB20 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F518C25231892200034AB20 /* ViewController1.swift */; };
 		4F79494B23196CCF00AAC2DA /* LegendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F79494A23196CCF00AAC2DA /* LegendCollectionViewCell.swift */; };
+		4F7949512319D17300AAC2DA /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7949502319D17300AAC2DA /* PopUpViewController.swift */; };
 		4FE9FEFA2316C39200BE59F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9FEF92316C39200BE59F3 /* AppDelegate.swift */; };
 		4FE9FEFC2316C39200BE59F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9FEFB2316C39200BE59F3 /* ViewController.swift */; };
 		4FE9FEFF2316C39200BE59F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE9FEFD2316C39200BE59F3 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		4F518BE92316C79F0034AB20 /* Env.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		4F518C25231892200034AB20 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		4F79494A23196CCF00AAC2DA /* LegendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F7949502319D17300AAC2DA /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		4FE9FEF62316C39200BE59F3 /* VS2019.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VS2019.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE9FEF92316C39200BE59F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FE9FEFB2316C39200BE59F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		4FE9FEF82316C39200BE59F3 /* VS2019 */ = {
 			isa = PBXGroup;
 			children = (
+				4F7949502319D17300AAC2DA /* PopUpViewController.swift */,
 				4F79494A23196CCF00AAC2DA /* LegendCollectionViewCell.swift */,
 				4FE9FEFB2316C39200BE59F3 /* ViewController.swift */,
 				4F518C25231892200034AB20 /* ViewController1.swift */,
@@ -444,6 +447,7 @@
 				4F518C26231892200034AB20 /* ViewController1.swift in Sources */,
 				4F518BEA2316C79F0034AB20 /* Env.swift in Sources */,
 				4F79494B23196CCF00AAC2DA /* LegendCollectionViewCell.swift in Sources */,
+				4F7949512319D17300AAC2DA /* PopUpViewController.swift in Sources */,
 				4FE9FEFC2316C39200BE59F3 /* ViewController.swift in Sources */,
 				4FE9FEFA2316C39200BE59F3 /* AppDelegate.swift in Sources */,
 				4F2560E52318A6B500573298 /* Static.swift in Sources */,

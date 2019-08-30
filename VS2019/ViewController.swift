@@ -9,15 +9,16 @@
 import UIKit
 import SwiftCharts
 import Charts
-import AnyChartiOS
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var chartView: UIView!
     @IBOutlet weak var legendCollectionView: UICollectionView!
     
     var chartPoints: Array<ChartPoint> = [ChartPoint]()
     var chartXLabels = [ChartAxisValue]()
+    var chartData: Array<FoodObject> = [FoodObject]()
     
     fileprivate var chart: Chart?
     
@@ -50,6 +51,32 @@ class ViewController: UIViewController {
         
         legendCollectionView.delegate = self
         legendCollectionView.dataSource = self
+        searchBar.delegate = self
+        
+        self.loadFullChartData()
+        self.drawChart()
+    }
+    
+    private func refreshArrays() {
+        chartPoints = [ChartPoint]()
+        chartXLabels = [ChartAxisValue]()
+        chartData = [FoodObject]()
+    }
+    
+    private func loadFullChartData() {
+        refreshArrays()
+        for obj in Static.calories {
+            chartData.append(obj)
+        }
+    }
+    
+    private func drawChart() {
+        // remove old chart if there is
+        chartView.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+        // ---------------------------
+        
         
         let labelDefaultSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         
@@ -72,7 +99,7 @@ class ViewController: UIViewController {
         currentOrder += 1
         //----------------------------------
         
-        for obj in Static.calories {
+        for obj in chartData {
             chartPoints.append(ChartPoint(x: ChartAxisValueDouble(currentHorizontalPosition),
                                           y: ChartAxisValueDouble(obj.calories)))
             currentHorizontalPosition += 1
@@ -116,12 +143,6 @@ class ViewController: UIViewController {
                                                                yModel: yModel)
         let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         
-        // create layer with guidelines
-        let guidelinesLayerSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
-        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer,
-                                                         yAxisLayer: yAxisLayer,
-                                                         settings: guidelinesLayerSettings)
-        
         // view generator - this is a function that creates a view for each chartpoint
         let viewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsViewsLayer, chart: Chart) -> UIView? in
             let viewSize: CGFloat = Env.iPad ? 100 : 100
@@ -130,12 +151,11 @@ class ViewController: UIViewController {
                                                        y: center.y - viewSize / 2,
                                                        width: viewSize,
                                                        height: viewSize))
-
-//            chart.addTarget(target: self, action: #selector(self.onClickPieChart(event:)), fields: ["x", "value"])
             
             let position = Int(chartPointModel.chartPoint.description.components(separatedBy: ",")[0])!
+            
             if (position != 0 && position != self.chartXLabels.count - 1){
-                let objs = Static.calories
+                let objs = self.chartData
                 let foodObj = objs[position - 1]
                 
                 // data
@@ -165,8 +185,10 @@ class ViewController: UIViewController {
                 dataSet.colors = self.colors
                 pointView.legend.enabled = false
                 pointView.drawHoleEnabled = false
+                pointView.highlightPerTapEnabled = false
                 pointView.data = chartData
             }
+            
             return pointView
             
         }
@@ -186,13 +208,20 @@ class ViewController: UIViewController {
             layers: [
                 xAxisLayer,
                 yAxisLayer,
-                guidelinesLayer,
+                lineLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer),
                 chartPointsLayer
             ]
         )
         
         chartView.addSubview(chart.view)
         self.chart = chart
+    }
+    
+    private func lineLayer(xAxisLayer: ChartAxisLayer, yAxisLayer: ChartAxisLayer) -> ChartGuideLinesDottedLayer{
+        let guidelinesLayerSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
+        return ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer,
+                                                         yAxisLayer: yAxisLayer,
+                                                         settings: guidelinesLayerSettings)
     }
 
     @objc private func onClickPieChart(event: NSDictionary) {
@@ -202,6 +231,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return name.count
     }
@@ -212,7 +242,33 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.nameText.text = name[indexPath.item]
         return cell
     }
-    
-    
 }
 
+extension ViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == "" {
+            self.loadFullChartData()
+            self.drawChart()
+        } else {
+            refreshArrays()
+            for obj in Static.calories {
+                if let text = searchBar.text {
+                    if obj.name.lowercased().contains(text.lowercased()) {
+                        chartData.append(obj)
+                    }
+                }
+            }
+            drawChart()
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        self.searchBar.endEditing(true)
+        return true
+    }
+}

@@ -75,14 +75,32 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rw-7q-Lsz">
+                                <rect key="frame" x="26" y="58" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3xu-hw-JQA"/>
+                                    <constraint firstAttribute="width" constant="40" id="IsV-1F-y5F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Back"/>
+                            </button>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="MWV-uU-ZDK">
+                                <rect key="frame" x="86" y="45" width="374" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="4rw-7q-Lsz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="7so-Fa-Kb3"/>
                             <constraint firstItem="6nA-dt-RYa" firstAttribute="top" secondItem="Ygj-M5-ZWk" secondAttribute="bottom" id="EaM-0E-GfU"/>
+                            <constraint firstItem="4rw-7q-Lsz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="38" id="HpE-9x-9Pu"/>
+                            <constraint firstItem="MWV-uU-ZDK" firstAttribute="leading" secondItem="4rw-7q-Lsz" secondAttribute="trailing" constant="20" id="Jl2-Kb-D9B"/>
                             <constraint firstItem="Ygj-M5-ZWk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="MLP-BP-GFe"/>
                             <constraint firstItem="6nA-dt-RYa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Obu-io-PKA"/>
+                            <constraint firstItem="Ygj-M5-ZWk" firstAttribute="leading" secondItem="MWV-uU-ZDK" secondAttribute="trailing" constant="20" id="Qen-hY-sgq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6nA-dt-RYa" secondAttribute="trailing" id="XIG-Mv-5Jv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ygj-M5-ZWk" secondAttribute="trailing" constant="20" id="iaA-Ld-LSD"/>
+                            <constraint firstItem="MWV-uU-ZDK" firstAttribute="centerY" secondItem="4rw-7q-Lsz" secondAttribute="centerY" id="r84-Qv-1rG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6nA-dt-RYa" secondAttribute="bottom" id="zvi-SD-GKh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -90,6 +108,7 @@
                     <connections>
                         <outlet property="chartView" destination="6nA-dt-RYa" id="pmB-Rj-NEQ"/>
                         <outlet property="legendCollectionView" destination="Ygj-M5-ZWk" id="aNu-H0-tO9"/>
+                        <outlet property="searchBar" destination="MWV-uU-ZDK" id="7Dx-po-j5u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

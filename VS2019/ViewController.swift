@@ -9,6 +9,7 @@
 import UIKit
 import SwiftCharts
 import Charts
+import AnyChartiOS
 
 class ViewController: UIViewController {
     
@@ -100,26 +101,53 @@ class ViewController: UIViewController {
                                                        y: center.y - viewSize / 2,
                                                        width: viewSize,
                                                        height: viewSize))
-            pointView.legend.enabled = false
+
+//            chart.addTarget(target: self, action: #selector(self.onClickPieChart(event:)), fields: ["x", "value"])
+
             let position = Int(chartPointModel.chartPoint.description.components(separatedBy: ",")[0])!
             if (position != 0 && position != self.chartXLabels.count - 1){
                 let objs = Static.calories
                 let foodObj = objs[position - 1]
+                
+                // data
                 let caloriesFromFat = PieChartDataEntry(value: foodObj.caloriesFromFat)
                 let totalFat = PieChartDataEntry(value: foodObj.totalFat)
                 let sodium = PieChartDataEntry(value: foodObj.Sodium)
-                if (foodObj.caloriesFromFat == 0 && foodObj.totalFat == 0 && foodObj.Sodium == 0) {
-                    pointView.holeColor = NSUIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-                    pointView.noDataTextColor = NSUIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-                    return pointView
-                }
-                let data = [caloriesFromFat, totalFat, sodium]
+                let potasium = PieChartDataEntry(value: foodObj.potasium)
+                let totalCarbonHydrate = PieChartDataEntry(value: foodObj.totalCarboHydrate)
+                let sugars = PieChartDataEntry(value: foodObj.sugars)
+                let protein = PieChartDataEntry(value: foodObj.protein)
+                let saturatedFat = PieChartDataEntry(value: foodObj.saturatedFat)
+                let cholesterol = PieChartDataEntry(value: foodObj.cholesterol)
+                
+                let data = [caloriesFromFat,
+                            totalFat,
+                            sodium,
+                            potasium,
+                            totalCarbonHydrate,
+                            sugars,
+                            protein,
+                            saturatedFat,
+                            cholesterol]
+                let alpha:CGFloat = 0.8
+                let colors = [
+                    UIColor.red.withAlphaComponent(alpha),
+                    UIColor.green.withAlphaComponent(alpha),
+                    UIColor.blue.withAlphaComponent(alpha),
+                    UIColor.cyan.withAlphaComponent(alpha),
+                    UIColor.brown.withAlphaComponent(alpha),
+                    UIColor.black.withAlphaComponent(alpha),
+                    UIColor.yellow.withAlphaComponent(alpha),
+                    UIColor.gray.withAlphaComponent(alpha),
+                    UIColor.magenta.withAlphaComponent(alpha),
+                ]
+                
                 let dataSet = PieChartDataSet(entries: data, label: nil)
                 let chartData = PieChartData(dataSet: dataSet)
                 chartData.setValueTextColor(NSUIColor.init(displayP3Red: 0, green: 0, blue: 0, alpha: 0))
-                let colors = [UIColor.red, UIColor.green, UIColor.blue]
                 dataSet.colors = colors
-                
+                pointView.legend.enabled = false
+                pointView.drawHoleEnabled = false
                 pointView.data = chartData
             }
             return pointView
@@ -148,6 +176,11 @@ class ViewController: UIViewController {
         
         chartView.addSubview(chart.view)
         self.chart = chart
+    }
+
+    @objc private func onClickPieChart(event: NSDictionary) {
+        print(event["x"]!)
+        print(event["value"]!)
     }
     
 }

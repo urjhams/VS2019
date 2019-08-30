@@ -26,14 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     for obj in jsonResult {
                         let foodObj = FoodObject(name: obj["Food_and_Serving"], calories: obj["Calories"],
                                                  caloriesFromFat: obj["Calories_from_Fat"], totalFat: obj["Total_Fat"],
-                                                 Sodium: obj["Sodium"], sodiumDV: obj["Sodium_6"], potasium: obj["Potassium"],
-                                                 potasiumDV: obj["Potassium_8"], totalCarboHydrate: obj["Total_Carbo_hydrate"],
-                                                 dietaryFiber: obj["Dietary_Fiber"], sugars: obj["Sugars"],
-                                                 protein: obj["Protein"], vitaminA: obj["Vitamin_A"],
-                                                 vitaminC: obj["Vitamin_C"], calciumDV: obj["Calcium"],
-                                                 ironDV: obj["__Iron__"], saturatedFatDV: obj["Saturated_Fat_20"],
+                                                 Sodium: obj["Sodium"], potasium: obj["Potassium"],
+                                                 totalCarboHydrate: obj["Total_Carbo_hydrate"],
+                                                 sugars: obj["Sugars"], protein: obj["Protein"],
                                                  saturatedFat: obj["Saturated_Fat"], cholesterol: obj["Chole_sterol"],
-                                                 cholesterolDV: obj["Chole_sterol_22"], type: obj["Food_Type"])
+                                                 type: obj["Food_Type"])
                         Static.calories.append(foodObj)
                     }
                 }

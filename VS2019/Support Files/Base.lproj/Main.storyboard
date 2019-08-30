@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nA-dt-RYa">
+                                <rect key="frame" x="0.0" y="110" width="1024" height="658"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6nA-dt-RYa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Obu-io-PKA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6nA-dt-RYa" secondAttribute="trailing" id="XIG-Mv-5Jv"/>
+                            <constraint firstItem="6nA-dt-RYa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="peC-Nv-nsf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6nA-dt-RYa" secondAttribute="bottom" id="zvi-SD-GKh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="6nA-dt-RYa" id="pmB-Rj-NEQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8359375" y="651.5625"/>
+        </scene>
+        <!--View Controller1-->
+        <scene sceneID="x2x-2A-Rfb">
+            <objects>
+                <viewController id="kgs-zt-ZFB" customClass="ViewController1" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8t6-8a-CNW">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJN-oV-Etq" customClass="ScatterChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="70" width="984" height="678"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DVf-TF-2ll" firstAttribute="trailing" secondItem="jJN-oV-Etq" secondAttribute="trailing" constant="20" id="BLo-pp-Bf0"/>
+                            <constraint firstItem="jJN-oV-Etq" firstAttribute="leading" secondItem="DVf-TF-2ll" secondAttribute="leading" constant="20" id="kSL-BT-M8e"/>
+                            <constraint firstItem="DVf-TF-2ll" firstAttribute="bottom" secondItem="jJN-oV-Etq" secondAttribute="bottom" constant="20" id="ogq-C8-fQc"/>
+                            <constraint firstItem="jJN-oV-Etq" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="50" id="tzK-nc-3Jq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DVf-TF-2ll"/>
+                    </view>
+                    <connections>
+                        <outlet property="chart" destination="jJN-oV-Etq" id="TgI-fW-tsh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NRT-im-YkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039.453125" y="22.65625"/>
+        </scene>
+    </scenes>
+</document>

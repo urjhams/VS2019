@@ -1,0 +1,26 @@
+PODS:
+  - AnyChartiOS (1.0.4)
+  - Charts (3.3.0):
+    - Charts/Core (= 3.3.0)
+  - Charts/Core (3.3.0)
+  - SwiftCharts (0.6.5)
+
+DEPENDENCIES:
+  - AnyChartiOS (~> 1.0.3)
+  - Charts
+  - SwiftCharts (~> 0.6.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AnyChartiOS
+    - Charts
+    - SwiftCharts
+
+SPEC CHECKSUMS:
+  AnyChartiOS: 7ce3964cb1ed0918410423beb0856ec0c2606d8f
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
+  SwiftCharts: 2e755ea292f0b87d3e4b2c1eb5afc080a20cdc15
+
+PODFILE CHECKSUM: c497845a767a96f5ce1f003d793995a28c6275cb
+
+COCOAPODS: 1.7.5

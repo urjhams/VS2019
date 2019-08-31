@@ -122,24 +122,9 @@
                     <view key="view" contentMode="scaleToFill" id="8t6-8a-CNW">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJN-oV-Etq" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="70" width="984" height="678"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="DVf-TF-2ll" firstAttribute="trailing" secondItem="jJN-oV-Etq" secondAttribute="trailing" constant="20" id="BLo-pp-Bf0"/>
-                            <constraint firstItem="jJN-oV-Etq" firstAttribute="leading" secondItem="DVf-TF-2ll" secondAttribute="leading" constant="20" id="kSL-BT-M8e"/>
-                            <constraint firstItem="DVf-TF-2ll" firstAttribute="bottom" secondItem="jJN-oV-Etq" secondAttribute="bottom" constant="20" id="ogq-C8-fQc"/>
-                            <constraint firstItem="jJN-oV-Etq" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="50" id="tzK-nc-3Jq"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="DVf-TF-2ll"/>
                     </view>
-                    <connections>
-                        <outlet property="chartView" destination="jJN-oV-Etq" id="f5N-yD-IUo"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRT-im-YkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

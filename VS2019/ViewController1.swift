@@ -7,94 +7,147 @@
 //
 
 import UIKit
-import Charts
+import SwiftCharts
 
 class ViewController1: UIViewController {
     
-    @IBOutlet weak var chartView: BarChartView!
+    fileprivate var chart: Chart? // arc
     
-    var chartData: Array<FoodObject> = [FoodObject]()
-    let nutritions = ["calories",
-                      "calories from fat",
-                      "total fat",
-                      "sodium",
-                      "potasium",
-                      "total carbon-hydrate",
-                      "sugar",
-                      "protein",
-                      "saturated fat",
-                      "cholesterol"]
-    var names = [String]()
-    var calories = [Double]()
-    var caloriesFromFats = [Double]()
-    var totalFats = [Double]()
-    var Sodiums = [Double]()
-    var potasiums = [Double]()
-    var totalCarboHydrates = [Double]()
-    var sugars = [Double]()
-    var proteins = [Double]()
-    var saturatedFats = [Double]()
-    var cholesterols = [Double]()
+    var calories = 50
+    let dictArray = [
+        ["Calories from Fat","caloriesFromFat"],
+        ["Total Fat","totalFat"],
+        ["Sodium","Sodium"],
+        ["Potasium","potasium"],
+        ["total Carbon-hydrate","totalCarboHydrate"],
+        ["Sugar","sugars"],
+        ["Protein","protein"],
+        ["saturated Fat","saturatedFat"],
+        ["Cholesterol","cholesterol"]
+    ]
+    
+    let sideSelectorHeight: CGFloat = 50
+    
+    fileprivate func chart(horizontal: Bool) -> Chart {
+        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
+        
+        let alpha: CGFloat = 0.8
+
+        let barModels = getModel()
+        
+        let (axisValues1, axisValues2) = (
+            stride(from: 0, through: 1200, by: 50).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)},
+            [ChartAxisValueString("", order: 0, labelSettings: labelSettings)] + barModels.map{$0.constant} + [ChartAxisValueString("", order: 10, labelSettings: labelSettings)]
+        )
+        let (xValues, yValues) = horizontal ? (axisValues1, axisValues2) : (axisValues2, axisValues1)
+        
+        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "", settings: labelSettings))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Amount of Nutritions", settings: labelSettings.defaultVertical()))
+        
+        let frame = ExamplesDefaults.chartFrame(view.bounds)
+        let chartFrame = chart?.frame ?? CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: frame.size.height - sideSelectorHeight)
+        
+        let chartSettings = ExamplesDefaults.chartSettingsWithPanZoom
+        
+        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+        let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+        
+        let barViewSettings = ChartBarViewSettings(animDuration: 0.5)
+        let chartStackedBarsLayer = ChartStackedBarsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, innerFrame: innerFrame, barModels: barModels, horizontal: horizontal, barWidth: 40, settings: barViewSettings, stackFrameSelectionViewUpdater: ChartViewSelectorAlpha(selectedAlpha: 1, deselectedAlpha: alpha)) {tappedBar in
+            
+            guard let stackFrameData = tappedBar.stackFrameData else {return}
+            
+            let chartViewPoint = tappedBar.layer.contentToGlobalCoordinates(CGPoint(x: tappedBar.barView.frame.midX, y: stackFrameData.stackedItemViewFrameRelativeToBarParent.minY))!
+            let viewPoint = CGPoint(x: chartViewPoint.x, y: chartViewPoint.y + 70)
+            let infoBubble = InfoBubble(point: viewPoint, preferredSize: CGSize(width: 50, height: 40), superview: self.view, text: "\(stackFrameData.stackedItemModel.quantity)", font: ExamplesDefaults.labelFont, textColor: UIColor.white, bgColor: UIColor.black)
+            infoBubble.tapHandler = {
+                infoBubble.removeFromSuperview()
+            }
+            self.view.addSubview(infoBubble)
+        }
+        
+        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
+        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: settings)
+        
+        return Chart(
+            frame: chartFrame,
+            innerFrame: innerFrame,
+            settings: chartSettings,
+            layers: [
+                xAxisLayer,
+                yAxisLayer,
+                guidelinesLayer,
+                chartStackedBarsLayer
+            ]
+        )
+    }
+    
+    fileprivate func showChart(horizontal: Bool) {
+        self.chart?.clearView()
+        
+        let chart = self.chart(horizontal: horizontal)
+        view.addSubview(chart.view)
+        self.chart = chart
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFullChartData()
-        prepareData()
-        var dataEntries = [BarChartDataEntry]()
-        for i in 0..<names.count {
-            let dataEntry = BarChartDataEntry(x: Double(i), yValues: [self.calories[i],
-                                                                      self.caloriesFromFats[i],
-                                                                      self.totalFats[i],
-                                                                      self.Sodiums[i],
-                                                                      self.potasiums[i],
-                                                                      self.totalCarboHydrates[i],
-                                                                      self.sugars[i],
-                                                                      self.proteins[i],
-                                                                      self.saturatedFats[i],
-                                                                      self.cholesterols[i]]
-            )
-            dataEntries.append(dataEntry)
-        }
-        let dataSet = BarChartDataSet(entries: dataEntries, label: "")
-        dataSet.stackLabels = [String]()
-        for name in names {
-            dataSet.stackLabels.append(name)
-        }
-        dataSet.colors = [ UIColor(red: 72/255, green: 201/255, blue: 176/255, alpha: 1),
-                           UIColor(red: 220/255, green: 118/255, blue: 51/255, alpha: 1),
-                           UIColor(red: 244/255, green: 208/255, blue: 63/255, alpha: 1),
-                           UIColor(red: 155/255, green: 89/255, blue: 182/255, alpha: 1),
-                           UIColor(red: 61/255, green: 165/255, blue: 255/255, alpha: 1),
-                           UIColor(red: 250/255, green: 215/255, blue: 160/255, alpha: 1),
-                           UIColor(red: 154/255, green: 125/255, blue: 10/255, alpha: 1),
-                           UIColor(red: 84/255, green: 153/255, blue: 199/255, alpha: 1),
-                           UIColor(red: 39/255, green: 174/255, blue: 96/255, alpha: 1),
-                           UIColor(red: 146/255, green: 43/255, blue: 33/255, alpha: 1)
-        ]
-        let data = BarChartData(dataSet: dataSet)
-        self.chartView.data = data
+        showChart(horizontal: false)
     }
     
-    private func loadFullChartData() {
+    private func getModel() -> [ChartStackedBarModel] {
+        var models = [ChartStackedBarModel]()
+        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
+        for i in 0..<dictArray.count {
+            let stack = ChartStackedBarModel(constant: ChartAxisValueString(dictArray[i][0],
+                                                                            order: i + 1,
+                                                                            labelSettings: labelSettings),
+                                             start: ChartAxisValueDouble(0),
+                                             items: getStackedBar(name: dictArray[i][1],
+                                                                  currentCalories: Double(self.calories)))
+            models.append(stack)
+        }
+        return models
+    }
+    
+    private func getStackedBar(name: String, currentCalories: Double) -> [ChartStackedBarItemModel] {
+        var result = [ChartStackedBarItemModel]()
+        var currentColorIndex = 0
         for obj in Static.calories {
-            chartData.append(obj)
+            if obj.calories == currentCalories {
+                var component = 0.0
+            
+                switch name {
+                    case "caloriesFromFat":
+                        component = obj.caloriesFromFat
+                    case "totalFat":
+                        component = obj.totalFat
+                    case "Sodium":
+                        component = obj.Sodium
+                    case "potasium":
+                        component = obj.potasium
+                    case "totalCarboHydrate":
+                        component = obj.totalCarboHydrate
+                    case "sugars":
+                        component = obj.sugars
+                    case "protein":
+                        component = obj.protein
+                    case "saturatedFat":
+                        component = obj.saturatedFat
+                    case "cholesterol":
+                        component = obj.cholesterol
+                    default:
+                        break
+                }
+            
+                result.append(ChartStackedBarItemModel(quantity: component,
+                                                       bgColor: Helper.colorArray[currentColorIndex]))
+                currentColorIndex += 1
+                if currentColorIndex == Helper.colorArray.count {
+                    currentColorIndex = 0
+                }
+            }
         }
+        return result
     }
-    
-    private func prepareData() {
-        for obj in chartData {
-            names.append(obj.name.components(separatedBy: ",")[0])
-            calories.append(obj.calories)
-            caloriesFromFats.append(obj.caloriesFromFat)
-            totalFats.append(obj.totalFat)
-            Sodiums.append(obj.Sodium)
-            potasiums.append(obj.potasium)
-            totalCarboHydrates.append(obj.totalCarboHydrate)
-            sugars.append(obj.sugars)
-            proteins.append(obj.protein)
-            saturatedFats.append(obj.saturatedFat)
-            cholesterols.append(obj.cholesterol)
-        }
-    }
-
 }

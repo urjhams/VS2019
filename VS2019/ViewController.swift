@@ -22,18 +22,6 @@ class ViewController: UIViewController {
     
     fileprivate var chart: Chart?
     
-    let colors: [NSUIColor] = [
-        UIColor.blue.withAlphaComponent(0.8),
-        UIColor.green.withAlphaComponent(0.8),
-        UIColor.red.withAlphaComponent(0.8),
-        UIColor.cyan.withAlphaComponent(0.8),
-        UIColor.brown.withAlphaComponent(0.8),
-        UIColor.darkGray.withAlphaComponent(0.8),
-        UIColor.lightGray.withAlphaComponent(0.8),
-        UIColor.gray.withAlphaComponent(0.8),
-        UIColor.magenta.withAlphaComponent(0.8),
-    ]
-    
     let name = [
         "Calories from Fat",
         "total Fat",
@@ -181,7 +169,7 @@ class ViewController: UIViewController {
                 let dataSet = PieChartDataSet(entries: data, label: nil)
                 let chartData = PieChartData(dataSet: dataSet)
                 chartData.setValueTextColor(NSUIColor.init(displayP3Red: 0, green: 0, blue: 0, alpha: 0))
-                dataSet.colors = self.colors
+                dataSet.colors = Helper.colorArray
                 
                 pointView.legend.enabled = false
                 pointView.drawHoleEnabled = false
@@ -245,7 +233,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "legnedCell", for: indexPath) as! LegendCollectionViewCell
-        cell.colorImg.backgroundColor = colors[indexPath.item]
+        cell.colorImg.backgroundColor = Helper.colorArray[indexPath.item]
         cell.nameText.text = name[indexPath.item]
         return cell
     }

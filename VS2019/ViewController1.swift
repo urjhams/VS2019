@@ -11,10 +11,11 @@ import SwiftCharts
 
 class ViewController1: UIViewController {
     
+    @IBOutlet weak var legendCollectionView: UICollectionView!
     @IBOutlet weak var containerView: UIView!
     fileprivate var chart: Chart? // arc
-    
-    var calories = 50
+    var legendDescription = [(String, UIColor)]()
+    var calories = 25
     let dictArray = [
         ["Calories from Fat","caloriesFromFat"],
         ["Total Fat","totalFat"],
@@ -43,7 +44,7 @@ class ViewController1: UIViewController {
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "", settings: labelSettings))
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Amount of Nutritions", settings: labelSettings.defaultVertical()))
         
-        let frame = ExamplesDefaults.chartFrame(view.bounds)
+        let frame = ExamplesDefaults.chartFrame(containerView.bounds)
         let chartFrame = chart?.frame ?? CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
         
         let chartSettings = ExamplesDefaults.chartSettingsWithPanZoom
@@ -62,7 +63,7 @@ class ViewController1: UIViewController {
             infoBubble.tapHandler = {
                 infoBubble.removeFromSuperview()
             }
-            self.view.addSubview(infoBubble)
+            self.containerView.addSubview(infoBubble)
         }
         
         let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
@@ -85,13 +86,15 @@ class ViewController1: UIViewController {
         self.chart?.clearView()
         
         let chart = self.chart(horizontal: horizontal)
-        view.addSubview(chart.view)
+        containerView.addSubview(chart.view)
         self.chart = chart
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showChart(horizontal: false)
+        legendCollectionView.delegate = self
+        legendCollectionView.dataSource = self
     }
     
     private func getModel() -> [ChartStackedBarModel] {
@@ -112,41 +115,57 @@ class ViewController1: UIViewController {
     private func getStackedBar(name: String, currentCalories: Double) -> [ChartStackedBarItemModel] {
         var result = [ChartStackedBarItemModel]()
         var currentColorIndex = 0
+        legendDescription = [(String, UIColor)]()
         for obj in Static.calories {
-            if obj.calories == currentCalories {
-                var component = 0.0
+            var component = 0.0
             
-                switch name {
-                    case "caloriesFromFat":
-                        component = obj.caloriesFromFat
-                    case "totalFat":
-                        component = obj.totalFat
-                    case "Sodium":
-                        component = obj.Sodium
-                    case "potasium":
-                        component = obj.potasium
-                    case "totalCarboHydrate":
-                        component = obj.totalCarboHydrate
-                    case "sugars":
-                        component = obj.sugars
-                    case "protein":
-                        component = obj.protein
-                    case "saturatedFat":
-                        component = obj.saturatedFat
-                    case "cholesterol":
-                        component = obj.cholesterol
-                    default:
-                        break
-                }
-            
-                result.append(ChartStackedBarItemModel(quantity: component,
-                                                       bgColor: Helper.colorArray[currentColorIndex]))
-                currentColorIndex += 1
-                if currentColorIndex == Helper.colorArray.count {
-                    currentColorIndex = 0
-                }
+            switch name {
+            case "caloriesFromFat":
+                component = obj.caloriesFromFat
+            case "totalFat":
+                component = obj.totalFat
+            case "Sodium":
+                component = obj.Sodium
+            case "potasium":
+                component = obj.potasium
+            case "totalCarboHydrate":
+                component = obj.totalCarboHydrate
+            case "sugars":
+                component = obj.sugars
+            case "protein":
+                component = obj.protein
+            case "saturatedFat":
+                component = obj.saturatedFat
+            case "cholesterol":
+                component = obj.cholesterol
+            default:
+                break
             }
+            
+            result.append(ChartStackedBarItemModel(quantity: (obj.calories == currentCalories) ? component : 0,
+                                                   bgColor: Helper.colorArray[currentColorIndex]))
+            currentColorIndex += 1
+            if currentColorIndex == Helper.colorArray.count {
+                currentColorIndex = 0
+            }
+            legendDescription.append((obj.name, Helper.colorArray[currentColorIndex]))
+            legendCollectionView.reloadData()
         }
         return result
     }
+}
+
+extension ViewController1: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return legendDescription.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "legnedCell", for: indexPath) as! LegendCollectionViewCell
+        cell.colorImg.backgroundColor = legendDescription[indexPath.item].1
+        cell.nameText.text = legendDescription[indexPath.item].0
+        return cell
+    }
+    
+    
 }

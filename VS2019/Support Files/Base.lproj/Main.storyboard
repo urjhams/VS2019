@@ -186,17 +186,46 @@
                                     <constraint firstItem="fOR-3u-xfg" firstAttribute="leading" secondItem="xDD-3E-fQV" secondAttribute="leading" constant="16" id="PCj-Hh-CMW"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="JMD-p5-v8Q">
+                                <rect key="frame" x="437" y="41" width="150" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bem-gn-mkv">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="3DP-xV-jns"/>
+                                            <constraint firstAttribute="height" constant="21" id="KKw-w0-mV8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgp-Ky-fK8">
+                                        <rect key="frame" x="91" y="0.0" width="59" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="59" id="bwW-cX-phe"/>
+                                            <constraint firstAttribute="height" constant="25" id="p4A-Y2-sKU"/>
+                                        </constraints>
+                                        <state key="normal" title="20"/>
+                                        <connections>
+                                            <action selector="chooseCalories:" destination="kgs-zt-ZFB" eventType="touchUpInside" id="Ezb-dj-Gbd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="leading" secondItem="DVf-TF-2ll" secondAttribute="leading" id="5rQ-Rq-xqt"/>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="bottom" secondItem="DVf-TF-2ll" secondAttribute="bottom" id="8Fj-6K-Fpa"/>
+                            <constraint firstItem="JMD-p5-v8Q" firstAttribute="centerX" secondItem="DVf-TF-2ll" secondAttribute="centerX" id="UtD-RR-yFa"/>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="trailing" secondItem="DVf-TF-2ll" secondAttribute="trailing" id="Zj5-R8-rQT"/>
+                            <constraint firstItem="JMD-p5-v8Q" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="21" id="m0I-Je-FDS"/>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="60" id="y46-sZ-Zs0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DVf-TF-2ll"/>
                     </view>
                     <connections>
+                        <outlet property="caloButton" destination="Fgp-Ky-fK8" id="k9i-Cv-dPD"/>
                         <outlet property="containerView" destination="xDD-3E-fQV" id="n5Z-BT-eHg"/>
                         <outlet property="legendCollectionView" destination="fOR-3u-xfg" id="RVJ-pa-eQ5"/>
                     </connections>
@@ -257,6 +286,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ud8-Ae-urV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1622.4609375" y="651.5625"/>
+        </scene>
+        <!--Pop Up Picker View Controller-->
+        <scene sceneID="FNW-BJ-nhz">
+            <objects>
+                <viewController storyboardIdentifier="popupPick" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="6aJ-Sr-n0A" customClass="PopUpPickerViewController" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zfu-n0-gyv">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-f6-gJf">
+                                <rect key="frame" x="182" y="175.5" width="660" height="437"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rEW-FE-bOo">
+                                        <rect key="frame" x="270" y="378" width="120" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eK-Uc-Op8">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="Clw-9J-QVY"/>
+                                                    <constraint firstAttribute="height" constant="30" id="SYQ-pF-bYo"/>
+                                                </constraints>
+                                                <state key="normal" title="OK"/>
+                                                <connections>
+                                                    <action selector="clickOK:" destination="6aJ-Sr-n0A" eventType="touchUpInside" id="0bS-co-P0f"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZG-8T-Atl">
+                                                <rect key="frame" x="72" y="0.0" width="48" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="1G0-VL-mt2"/>
+                                                    <constraint firstAttribute="width" constant="48" id="BF2-G4-5P6"/>
+                                                </constraints>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="close:" destination="6aJ-Sr-n0A" eventType="touchUpInside" id="uPz-Nc-GH2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgW-Ty-QAy">
+                                        <rect key="frame" x="0.0" y="72" width="660" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="660" id="2NV-BD-R4M"/>
+                                    <constraint firstAttribute="height" constant="437" id="84b-Po-dRy"/>
+                                    <constraint firstAttribute="trailing" secondItem="pgW-Ty-QAy" secondAttribute="trailing" id="87R-3z-mry"/>
+                                    <constraint firstItem="rEW-FE-bOo" firstAttribute="centerX" secondItem="7LK-f6-gJf" secondAttribute="centerX" id="L0r-8L-X3F"/>
+                                    <constraint firstItem="pgW-Ty-QAy" firstAttribute="leading" secondItem="7LK-f6-gJf" secondAttribute="leading" id="eTS-kw-ar0"/>
+                                    <constraint firstItem="pgW-Ty-QAy" firstAttribute="top" secondItem="7LK-f6-gJf" secondAttribute="top" constant="72" id="fGi-6J-x9m"/>
+                                    <constraint firstItem="rEW-FE-bOo" firstAttribute="top" secondItem="pgW-Ty-QAy" secondAttribute="bottom" constant="90" id="lca-BE-IEx"/>
+                                    <constraint firstAttribute="bottom" secondItem="rEW-FE-bOo" secondAttribute="bottom" constant="29" id="ugp-Mh-xiY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="0.45000000000000001" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7LK-f6-gJf" firstAttribute="centerX" secondItem="hWm-I0-lPk" secondAttribute="centerX" id="c4j-Gz-WFf"/>
+                            <constraint firstItem="7LK-f6-gJf" firstAttribute="centerY" secondItem="hWm-I0-lPk" secondAttribute="centerY" id="d0H-o6-6W6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hWm-I0-lPk"/>
+                    </view>
+                    <connections>
+                        <outlet property="frameView" destination="7LK-f6-gJf" id="Kb7-Ms-L1d"/>
+                        <outlet property="pickerView" destination="pgW-Ty-QAy" id="Nt2-cb-D1S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LC3-WM-E1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2304" y="652"/>
         </scene>
     </scenes>
 </document>

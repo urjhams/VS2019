@@ -13,9 +13,15 @@ class ViewController1: UIViewController {
     
     @IBOutlet weak var legendCollectionView: UICollectionView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var caloButton: UIButton!
     fileprivate var chart: Chart? // arc
     var legendDescription = [(String, UIColor)]()
-    var calories = 25
+    var calories = 25 {
+        didSet {
+            caloButton.setTitle(String(calories), for: .normal)
+            showChart(horizontal: false)
+        }
+    }
     let dictArray = [
         ["Calories from Fat","caloriesFromFat"],
         ["Total Fat","totalFat"],
@@ -148,10 +154,15 @@ class ViewController1: UIViewController {
             if currentColorIndex == Helper.colorArray.count {
                 currentColorIndex = 0
             }
-            legendDescription.append((obj.name, Helper.colorArray[currentColorIndex]))
+            legendDescription.append((obj.name.components(separatedBy: ",")[0], Helper.colorArray[currentColorIndex]))
             legendCollectionView.reloadData()
         }
         return result
+    }
+    @IBAction func chooseCalories(_ sender: Any) {
+        let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popupPick") as! PopUpPickerViewController
+        destination.root = self
+        self.present(destination, animated: true, completion: nil)
     }
 }
 

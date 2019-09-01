@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kgs-zt-ZFB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z4p-PB-LM4">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -357,6 +357,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LC3-WM-E1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2304" y="652"/>
+        </scene>
+        <!--View Controller2-->
+        <scene sceneID="kB5-6Z-BXj">
+            <objects>
+                <viewController id="Z4p-PB-LM4" customClass="ViewController2" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wTh-ja-5gm">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxT-FQ-5pr" customClass="AnyChartView" customModule="AnyChartiOS">
+                                <rect key="frame" x="16" y="80" width="992" height="688"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mxT-FQ-5pr" firstAttribute="leading" secondItem="UTs-eF-pZL" secondAttribute="leading" constant="16" id="46Y-gH-T6o"/>
+                            <constraint firstItem="UTs-eF-pZL" firstAttribute="trailing" secondItem="mxT-FQ-5pr" secondAttribute="trailing" constant="16" id="B9y-El-1Zf"/>
+                            <constraint firstItem="mxT-FQ-5pr" firstAttribute="top" secondItem="UTs-eF-pZL" secondAttribute="top" constant="60" id="cba-2r-4Vl"/>
+                            <constraint firstItem="UTs-eF-pZL" firstAttribute="bottom" secondItem="mxT-FQ-5pr" secondAttribute="bottom" id="xoU-Rt-EVA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UTs-eF-pZL"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="mxT-FQ-5pr" id="lh5-ty-tDw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Y7-O1-ksv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009.9609375" y="651.5625"/>
         </scene>
     </scenes>
 </document>

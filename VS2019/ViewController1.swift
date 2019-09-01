@@ -11,6 +11,7 @@ import SwiftCharts
 
 class ViewController1: UIViewController {
     
+    @IBOutlet weak var containerView: UIView!
     fileprivate var chart: Chart? // arc
     
     var calories = 50
@@ -25,8 +26,6 @@ class ViewController1: UIViewController {
         ["saturated Fat","saturatedFat"],
         ["Cholesterol","cholesterol"]
     ]
-    
-    let sideSelectorHeight: CGFloat = 50
     
     fileprivate func chart(horizontal: Bool) -> Chart {
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
@@ -45,7 +44,7 @@ class ViewController1: UIViewController {
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Amount of Nutritions", settings: labelSettings.defaultVertical()))
         
         let frame = ExamplesDefaults.chartFrame(view.bounds)
-        let chartFrame = chart?.frame ?? CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: frame.size.height - sideSelectorHeight)
+        let chartFrame = chart?.frame ?? CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
         
         let chartSettings = ExamplesDefaults.chartSettingsWithPanZoom
         
@@ -59,7 +58,7 @@ class ViewController1: UIViewController {
             
             let chartViewPoint = tappedBar.layer.contentToGlobalCoordinates(CGPoint(x: tappedBar.barView.frame.midX, y: stackFrameData.stackedItemViewFrameRelativeToBarParent.minY))!
             let viewPoint = CGPoint(x: chartViewPoint.x, y: chartViewPoint.y + 70)
-            let infoBubble = InfoBubble(point: viewPoint, preferredSize: CGSize(width: 50, height: 40), superview: self.view, text: "\(stackFrameData.stackedItemModel.quantity)", font: ExamplesDefaults.labelFont, textColor: UIColor.white, bgColor: UIColor.black)
+            let infoBubble = InfoBubble(point: viewPoint, preferredSize: CGSize(width: 50, height: 40), superview: self.view, text: "\(stackFrameData.stackedItemModel.quantity) g", font: ExamplesDefaults.labelFont, textColor: UIColor.white, bgColor: UIColor.black)
             infoBubble.tapHandler = {
                 infoBubble.removeFromSuperview()
             }

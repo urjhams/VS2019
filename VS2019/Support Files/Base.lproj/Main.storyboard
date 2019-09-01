@@ -122,13 +122,28 @@
                     <view key="view" contentMode="scaleToFill" id="8t6-8a-CNW">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDD-3E-fQV">
+                                <rect key="frame" x="0.0" y="160" width="1024" height="608"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xDD-3E-fQV" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="140" id="4u5-2M-tNL"/>
+                            <constraint firstItem="xDD-3E-fQV" firstAttribute="leading" secondItem="DVf-TF-2ll" secondAttribute="leading" id="5rQ-Rq-xqt"/>
+                            <constraint firstItem="xDD-3E-fQV" firstAttribute="bottom" secondItem="DVf-TF-2ll" secondAttribute="bottom" id="7dr-zO-PBH"/>
+                            <constraint firstItem="xDD-3E-fQV" firstAttribute="trailing" secondItem="DVf-TF-2ll" secondAttribute="trailing" id="Zj5-R8-rQT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="DVf-TF-2ll"/>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="xDD-3E-fQV" id="n5Z-BT-eHg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRT-im-YkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="652"/>
+            <point key="canvasLocation" x="854.8828125" y="651.5625"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="ebG-TK-yft">

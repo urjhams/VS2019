@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var chartView: UIView!
     @IBOutlet weak var legendCollectionView: UICollectionView!
+    @IBAction func clickBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     var chartPoints: Array<ChartPoint> = [ChartPoint]()
     var chartXLabels = [ChartAxisValue]()

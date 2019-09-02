@@ -12,6 +12,9 @@ import AnyChartiOS
 class ViewController2: UIViewController {
 
     @IBOutlet weak var chartView: AnyChartView!
+    @IBAction func clickBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     var objects = [SuperFoodObject]()
     

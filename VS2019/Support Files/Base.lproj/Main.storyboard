@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z4p-PB-LM4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D2P-KQ-DPg">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -83,6 +83,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="clickBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DG-tw-Df5"/>
+                                </connections>
                             </button>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="MWV-uU-ZDK">
                                 <rect key="frame" x="86" y="45" width="374" height="56"/>
@@ -114,6 +117,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8359375" y="651.5625"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="aOX-Rr-YRT">
+            <objects>
+                <viewController id="D2P-KQ-DPg" customClass="MainViewController" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8cG-Lh-NE2">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1Ac-rp-0uR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GR9-IH-6Q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="1509"/>
         </scene>
         <!--View Controller1-->
         <scene sceneID="x2x-2A-Rfb">
@@ -187,20 +205,19 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="JMD-p5-v8Q">
-                                <rect key="frame" x="437" y="41" width="150" height="21"/>
+                                <rect key="frame" x="437" y="41" width="150" height="25"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bem-gn-mkv">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="3DP-xV-jns"/>
-                                            <constraint firstAttribute="height" constant="21" id="KKw-w0-mV8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgp-Ky-fK8">
-                                        <rect key="frame" x="91" y="0.0" width="59" height="21"/>
+                                        <rect key="frame" x="91" y="0.0" width="59" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="59" id="bwW-cX-phe"/>
                                             <constraint firstAttribute="height" constant="25" id="p4A-Y2-sKU"/>
@@ -212,13 +229,27 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhs-dn-h1I">
+                                <rect key="frame" x="26" y="42" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Ri9-D4-z5t"/>
+                                    <constraint firstAttribute="height" constant="30" id="qMC-6k-NkM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="clickBack:" destination="kgs-zt-ZFB" eventType="touchUpInside" id="oFI-sP-ekx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="leading" secondItem="DVf-TF-2ll" secondAttribute="leading" id="5rQ-Rq-xqt"/>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="bottom" secondItem="DVf-TF-2ll" secondAttribute="bottom" id="8Fj-6K-Fpa"/>
                             <constraint firstItem="JMD-p5-v8Q" firstAttribute="centerX" secondItem="DVf-TF-2ll" secondAttribute="centerX" id="UtD-RR-yFa"/>
+                            <constraint firstItem="Yhs-dn-h1I" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="22" id="V3X-nQ-j0l"/>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="trailing" secondItem="DVf-TF-2ll" secondAttribute="trailing" id="Zj5-R8-rQT"/>
+                            <constraint firstItem="Yhs-dn-h1I" firstAttribute="leading" secondItem="DVf-TF-2ll" secondAttribute="leading" constant="26" id="hit-er-ptZ"/>
                             <constraint firstItem="JMD-p5-v8Q" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="21" id="m0I-Je-FDS"/>
                             <constraint firstItem="xDD-3E-fQV" firstAttribute="top" secondItem="DVf-TF-2ll" secondAttribute="top" constant="60" id="y46-sZ-Zs0"/>
                         </constraints>
@@ -370,12 +401,26 @@
                                 <rect key="frame" x="16" y="80" width="992" height="688"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddG-84-Q1Z">
+                                <rect key="frame" x="26" y="42" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="J6i-Xj-5jw"/>
+                                    <constraint firstAttribute="width" constant="40" id="SIs-SY-vb2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="clickBack:" destination="Z4p-PB-LM4" eventType="touchUpInside" id="8WI-7D-wTU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mxT-FQ-5pr" firstAttribute="leading" secondItem="UTs-eF-pZL" secondAttribute="leading" constant="16" id="46Y-gH-T6o"/>
                             <constraint firstItem="UTs-eF-pZL" firstAttribute="trailing" secondItem="mxT-FQ-5pr" secondAttribute="trailing" constant="16" id="B9y-El-1Zf"/>
+                            <constraint firstItem="ddG-84-Q1Z" firstAttribute="leading" secondItem="UTs-eF-pZL" secondAttribute="leading" constant="26" id="Kfu-3H-LZa"/>
                             <constraint firstItem="mxT-FQ-5pr" firstAttribute="top" secondItem="UTs-eF-pZL" secondAttribute="top" constant="60" id="cba-2r-4Vl"/>
+                            <constraint firstItem="ddG-84-Q1Z" firstAttribute="top" secondItem="UTs-eF-pZL" secondAttribute="top" constant="22" id="q5J-tD-Ri2"/>
                             <constraint firstItem="UTs-eF-pZL" firstAttribute="bottom" secondItem="mxT-FQ-5pr" secondAttribute="bottom" id="xoU-Rt-EVA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UTs-eF-pZL"/>

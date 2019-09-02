@@ -14,6 +14,9 @@ class ViewController1: UIViewController {
     @IBOutlet weak var legendCollectionView: UICollectionView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var caloButton: UIButton!
+    @IBAction func clickBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     fileprivate var chart: Chart? // arc
     
     var legendDescription = [(String, UIColor)]()

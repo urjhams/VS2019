@@ -44,9 +44,9 @@ class ViewController2: UIViewController {
 //                token: "function() { var namesList = ['','','',\"Type 2 diabetes\", \"cancer\",\"weight loss, cardiovascular health\",'','',\"osteoarthritis\",'','','',''›,\"cardiovascular health\"]; return namesList[this.heat]; }"
 //        )
         chart.labels()
-            .minFontSize(size: 7)
+            .minFontSize(size: 8)
             .format(
-                token: "function() { if (this.x == 'strawberries' && this.y == 'Conflicting') { return 'cancer';} else if (this.x == 'grapes' && this.y == 'Strong') {return 'cardiovascular disease';} else if (this.x == 'kiwi' && this.y == 'Conflicting'){return 'cardiovascular disease';} else if (this.x == 'sweet potato' && this.y == 'Slight') {return 'type 2 diabetes';} else if (this.x == 'apple' && this.y == 'Conflicting') {return 'many conditions';} else if (this.x == 'pineapple' && this.y == 'Promising') {return 'osteoarthritis';} else if (this.x == 'grapefruit' && this.y == 'Conflicting') {return 'wieght loss, cardiovascular health';} else {return '';} }"
+                token: "function() { if (this.x == 'strawberries' && this.y == 'Conflicting') { return 'cancer';} else if (this.x == 'grapes' && this.y == 'Strong') {return 'cardiovascular disease';} else if (this.x == 'kiwi' && this.y == 'Conflicting'){return 'cardiovascular disease';} else if (this.x == 'sweet potato' && this.y == 'Slight') {return 'type 2 diabetes';} else if (this.x == 'apple' && this.y == 'Conflicting') {return 'many conditions';} else if (this.x == 'pineapple' && this.y == 'Promising') {return 'osteoarthritis';} else if (this.x == 'grapefruit' && this.y == 'Conflicting') {return 'wieght loss...';} else {return '';} }"
         )
         var data = [DataEntry]()
         for obj in objects {

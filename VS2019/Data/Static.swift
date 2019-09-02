@@ -10,4 +10,5 @@ import Foundation
 
 public class Static {
     public static var calories = [FoodObject]()
+    public static var superFood = [SuperFoodObject]()
 }

@@ -38,6 +38,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //
             }
         }
+        if let path = Bundle.main.path(forResource: "superFood", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                if let jsonResult = jsonResult as? Array<Dictionary<String, String>> {
+                    for obj in jsonResult {
+                        let superFood = SuperFoodObject(name: obj["name"] ?? "",
+                                                        envidence: Int(obj["primaryvalue"] ?? "") ?? 0,
+                                                        condition: obj["subcategory"] ?? "")
+                        Static.superFood.append(superFood)
+                    }
+                }
+            } catch {
+                //
+            }
+        }
         
         return true
     }

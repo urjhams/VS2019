@@ -12,36 +12,52 @@ import AnyChartiOS
 class ViewController2: UIViewController {
 
     @IBOutlet weak var chartView: AnyChartView!
+    
+    var objects = [SuperFoodObject]()
+    
     override func viewDidLoad() {
+        for superObj in Static.superFood {
+            for obj in Static.calories {
+                if(obj.name.lowercased().components(separatedBy: ",")[0] == superObj.name.lowercased()) {
+                    var add = true
+                    for currentObj in objects {
+                        if currentObj.name.lowercased() == superObj.name.lowercased() {
+                            add = false
+                        }
+                    }
+                    if add {
+                        objects.append(superObj)
+                    }
+                }
+            }
+        }
         super.viewDidLoad()
         let chart = AnyChart.heatMap()
-        chart.labels()
-            .minFontSize(size: 14)
-            .format(token: "function() { var namesList = [\"Low\", \"Medium\", \"High\", \"Extreme\"]; var h = this. heat; if (h == 5) {return '';} return namesList[this.heat]; }")
-        let data: Array<DataEntry> = [
-            HeatMapDataEntry(x: "Food 1", y: "Strong", heat: 5),
-            HeatMapDataEntry(x: "Food 2", y: "Strong", heat: 5),
-            HeatMapDataEntry(x: "Food 3", y: "Strong", heat: 5),
-            HeatMapDataEntry(x: "Food 1", y: "Good", heat: 4),
-            HeatMapDataEntry(x: "Food 2", y: "Good", heat: 4),
-            HeatMapDataEntry(x: "Food 3", y: "Good", heat: 4),
-            HeatMapDataEntry(x: "Food 1", y: "Promising", heat: 3),
-            HeatMapDataEntry(x: "Food 2", y: "Promising", heat: 3),
-            HeatMapDataEntry(x: "Food 3", y: "Promising", heat: 3),
-            HeatMapDataEntry(x: "Food 1", y: "Conflicting", heat: 2),
-            HeatMapDataEntry(x: "Food 2", y: "Conflicting", heat: 2),
-            HeatMapDataEntry(x: "Food 3", y: "Conflicting", heat: 2),
-            HeatMapDataEntry(x: "Food 1", y: "Slight", heat: 1),
-            HeatMapDataEntry(x: "Food 2", y: "Slight", heat: 1),
-            HeatMapDataEntry(x: "Food 3", y: "Slight", heat: 1),
-            HeatMapDataEntry(x: "Food 1", y: "No evidence", heat: 0),
-            HeatMapDataEntry(x: "Food 2", y: "No evidence", heat: 0),
-            HeatMapDataEntry(x: "Food 3", y: "No evidence", heat: 0),
-        ]
+//        chart.labels()
+//            .minFontSize(size: 14)
+//            .format(token: "function() { var namesList = [\"Low\", \"Medium\", \"High\", \"Extreme\"]; var h = this. heat; if (h == 5) {return '';} return namesList[this.heat]; }")
+        var data = [DataEntry]()
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "Strong", heat: 5))
+        }
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "Good", heat: 4))
+        }
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "Promising", heat: 3))
+        }
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "Conflicting", heat: 2))
+        }
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "Slight", heat: 1))
+        }
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "No evidence", heat: 0))
+        }
+        
         let _ = chart.data(data: data)
         
-        //        let _ = chart.legend().enabled(enabled: false)
-        //
         ////        chart.title(settings: "Fruits imported in 2015 (in kg)")
         //
         chartView.setChart(chart: chart)

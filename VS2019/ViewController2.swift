@@ -33,27 +33,31 @@ class ViewController2: UIViewController {
         }
         super.viewDidLoad()
         let chart = AnyChart.heatMap()
-//        chart.labels()
-//            .minFontSize(size: 14)
-//            .format(token: "function() { var namesList = [\"Low\", \"Medium\", \"High\", \"Extreme\"]; var h = this. heat; if (h == 5) {return '';} return namesList[this.heat]; }")
+        chart.labels()
+            .minFontSize(size: 6)
+            .format(
+                token: "function() { var namesList = ['','','',\"Type 2 diabetes\", \"cancer\",\"weight loss, cardiovascular health\",'','',\"osteoarthritis\",'','','',\"cardiovascular health\"]; return namesList[this.heat]; }"
+        )
         var data = [DataEntry]()
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Strong", heat: 5))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Strong", heat: obj.envidence == 5 ? 12 : 11))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Good", heat: 4))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Good", heat: obj.envidence == 4 ? 10 : 9))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Promising", heat: 3))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Promising", heat: obj.envidence == 3 ? 8 : 7))
+        }
+        var repeating = true
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "Conflicting", heat: obj.envidence == 2 ? (!repeating ? 5 : 4) : (!repeating ? 6 : 4)))
+            repeating = false
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Conflicting", heat: 2))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Slight", heat: obj.envidence == 1 ? 3 : 2))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Slight", heat: 1))
-        }
-        for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "No evidence", heat: 0))
+            data.append(HeatMapDataEntry(x: obj.name, y: "No evidence", heat: obj.envidence == 0 ? 1 : 0))
         }
         
         let _ = chart.data(data: data)
@@ -61,7 +65,6 @@ class ViewController2: UIViewController {
         ////        chart.title(settings: "Fruits imported in 2015 (in kg)")
         //
         chartView.setChart(chart: chart)
-        
     }
     
     

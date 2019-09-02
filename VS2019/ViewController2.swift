@@ -34,33 +34,38 @@ class ViewController2: UIViewController {
                 }
             }
         }
+        print(objects)
         super.viewDidLoad()
         let chart = AnyChart.heatMap()
+        chart.tooltip().format(format: "function() {if (this.x == 'strawberries' && this.y == 'Conflicting') { return 'cancer';} else if (this.x == 'grapes' && this.y == 'Strong') {return 'cardiovascular disease';} else if (this.x == 'kiwi' && this.y == 'Conflicting'){return 'cardiovascular disease';} else if (this.x == 'sweet potato' && this.y == 'Slight') {return 'type 2 diabetes';} else if (this.x == 'apple' && this.y == 'Conflicting') {return 'many conditions';} else if (this.x == 'pineapple' && this.y == 'Promising') {return 'osteoarthritis';} else if (this.x == 'grapefruit' && this.y == 'Conflicting') {return 'wieght loss, cardiovascular health';} else {return '';} }")
+//        chart.labels()
+//            .minFontSize(size: 6)
+//            .format(
+//                token: "function() { var namesList = ['','','',\"Type 2 diabetes\", \"cancer\",\"weight loss, cardiovascular health\",'','',\"osteoarthritis\",'','','',''›,\"cardiovascular health\"]; return namesList[this.heat]; }"
+//        )
         chart.labels()
-            .minFontSize(size: 6)
+            .minFontSize(size: 7)
             .format(
-                token: "function() { var namesList = ['','','',\"Type 2 diabetes\", \"cancer\",\"weight loss, cardiovascular health\",'','',\"osteoarthritis\",'','','',\"cardiovascular health\"]; return namesList[this.heat]; }"
+                token: "function() { if (this.x == 'strawberries' && this.y == 'Conflicting') { return 'cancer';} else if (this.x == 'grapes' && this.y == 'Strong') {return 'cardiovascular disease';} else if (this.x == 'kiwi' && this.y == 'Conflicting'){return 'cardiovascular disease';} else if (this.x == 'sweet potato' && this.y == 'Slight') {return 'type 2 diabetes';} else if (this.x == 'apple' && this.y == 'Conflicting') {return 'many conditions';} else if (this.x == 'pineapple' && this.y == 'Promising') {return 'osteoarthritis';} else if (this.x == 'grapefruit' && this.y == 'Conflicting') {return 'wieght loss, cardiovascular health';} else {return '';} }"
         )
         var data = [DataEntry]()
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Strong", heat: obj.envidence == 5 ? 12 : 11))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Strong", heat: 10))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Good", heat: obj.envidence == 4 ? 10 : 9))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Good", heat: 8))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Promising", heat: obj.envidence == 3 ? 8 : 7))
-        }
-        var repeating = true
-        for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Conflicting", heat: obj.envidence == 2 ? (!repeating ? 5 : 4) : (!repeating ? 6 : 4)))
-            repeating = false
+            data.append(HeatMapDataEntry(x: obj.name, y: "Promising", heat: 6))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "Slight", heat: obj.envidence == 1 ? 3 : 2))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Conflicting", heat: 4))
         }
         for obj in objects {
-            data.append(HeatMapDataEntry(x: obj.name, y: "No evidence", heat: obj.envidence == 0 ? 1 : 0))
+            data.append(HeatMapDataEntry(x: obj.name, y: "Slight", heat: 2))
+        }
+        for obj in objects {
+            data.append(HeatMapDataEntry(x: obj.name, y: "No evidence", heat: 0))
         }
         
         let _ = chart.data(data: data)
@@ -69,6 +74,24 @@ class ViewController2: UIViewController {
         //
         chartView.setChart(chart: chart)
     }
-    
-    
+    private func smallCaculate(repeating: Int) -> Int {
+        switch repeating {
+        case 0:
+            return 5
+        case 1:
+            return 6
+        case 2:
+            return 7
+        case 3:
+            return 8
+        default:
+            return 4
+        }
+    }
+    class CustomDataEntry: HeatMapDataEntry {
+        init(x: String, y: String, heat: Int, fill: String) {
+            super.init(x: x, y: y, heat: heat)
+            setValue(key: "fill", value: fill)
+        }
+    }
 }

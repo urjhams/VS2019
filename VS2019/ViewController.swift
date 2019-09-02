@@ -120,7 +120,7 @@ class ViewController: UIViewController {
                                     axisValuesGenerator: generator,
                                     labelsGenerator: labelsGenerator)
         
-        let xxModel = ChartAxisModel(axisValues: chartXLabels)
+        let xModel = ChartAxisModel(axisValues: chartXLabels)
         
         let chartFrame = ExamplesDefaults.chartFrame(chartView.frame)
         
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
         // generate axes layers and calculate chart inner frame, based on the axis models
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings,
                                                                chartFrame: chartFrame,
-                                                               xModel: xxModel,
+                                                               xModel: xModel,
                                                                yModel: yModel)
         let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         

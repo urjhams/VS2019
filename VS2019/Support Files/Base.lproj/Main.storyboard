@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="q1" id="BYZ-38-t0r" customClass="ViewController" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,18 +125,85 @@
                     <view key="view" contentMode="scaleToFill" id="8cG-Lh-NE2">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="K9W-Fj-UQg">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWZ-cc-Sxb">
+                                <rect key="frame" x="82" y="227" width="860" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="pQt-BI-7XF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="How many calories are in each certain food in categories of fruit, vegetables and seafood and how nutrient they are ?">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1JM-33-ETY">
+                                <rect key="frame" x="82" y="310" width="860" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Compare foods that have the same amount of calories in term of the same nutrition">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yk7-9b-HbR">
+                                <rect key="frame" x="82" y="397" width="860" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Do “super-foods” have super power?">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thi Yen Nguyen - 120376" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciT-PK-M6E">
+                                <rect key="frame" x="56" y="696" width="194" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngoc Le Quan Dinh- 119457" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3w-wM-c4h">
+                                <rect key="frame" x="56" y="661" width="216" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1JM-33-ETY" firstAttribute="width" secondItem="YWZ-cc-Sxb" secondAttribute="width" id="017-Xj-tol"/>
+                            <constraint firstItem="ciT-PK-M6E" firstAttribute="leading" secondItem="1Ac-rp-0uR" secondAttribute="leading" constant="56" id="8Af-ik-Lo9"/>
+                            <constraint firstItem="ciT-PK-M6E" firstAttribute="top" secondItem="T3w-wM-c4h" secondAttribute="bottom" constant="14" id="DAi-Od-JIy"/>
+                            <constraint firstItem="YWZ-cc-Sxb" firstAttribute="leading" secondItem="1Ac-rp-0uR" secondAttribute="leading" constant="82" id="EFB-7d-aUH"/>
+                            <constraint firstItem="T3w-wM-c4h" firstAttribute="leading" secondItem="1Ac-rp-0uR" secondAttribute="leading" constant="56" id="Gfv-45-hf5"/>
+                            <constraint firstItem="1JM-33-ETY" firstAttribute="top" secondItem="YWZ-cc-Sxb" secondAttribute="bottom" constant="42" id="HU6-dR-sSl"/>
+                            <constraint firstItem="K9W-Fj-UQg" firstAttribute="trailing" secondItem="1Ac-rp-0uR" secondAttribute="trailing" id="J2b-NV-lZx"/>
+                            <constraint firstItem="K9W-Fj-UQg" firstAttribute="top" secondItem="8cG-Lh-NE2" secondAttribute="top" id="MOa-iP-RZU"/>
+                            <constraint firstItem="1JM-33-ETY" firstAttribute="height" secondItem="YWZ-cc-Sxb" secondAttribute="height" id="NqN-Cd-Zcc"/>
+                            <constraint firstItem="Yk7-9b-HbR" firstAttribute="leading" secondItem="1JM-33-ETY" secondAttribute="leading" id="ODI-ud-SqR"/>
+                            <constraint firstItem="1JM-33-ETY" firstAttribute="leading" secondItem="YWZ-cc-Sxb" secondAttribute="leading" id="PWK-fp-BFK"/>
+                            <constraint firstItem="K9W-Fj-UQg" firstAttribute="leading" secondItem="1Ac-rp-0uR" secondAttribute="leading" id="R9o-Jd-TIG"/>
+                            <constraint firstItem="Yk7-9b-HbR" firstAttribute="height" secondItem="1JM-33-ETY" secondAttribute="height" id="SNb-dJ-4sE"/>
+                            <constraint firstItem="K9W-Fj-UQg" firstAttribute="bottom" secondItem="1Ac-rp-0uR" secondAttribute="bottom" id="Wm0-BA-LJX"/>
+                            <constraint firstItem="1Ac-rp-0uR" firstAttribute="bottom" secondItem="ciT-PK-M6E" secondAttribute="bottom" constant="51" id="XuU-KZ-z6l"/>
+                            <constraint firstItem="Yk7-9b-HbR" firstAttribute="top" secondItem="1JM-33-ETY" secondAttribute="bottom" constant="46" id="c2f-Uw-hZ2"/>
+                            <constraint firstItem="K9W-Fj-UQg" firstAttribute="top" secondItem="YWZ-cc-Sxb" secondAttribute="bottom" constant="-268" id="oKZ-Z2-xoM"/>
+                            <constraint firstItem="Yk7-9b-HbR" firstAttribute="width" secondItem="1JM-33-ETY" secondAttribute="width" id="tUy-Y5-Ust"/>
+                            <constraint firstItem="1Ac-rp-0uR" firstAttribute="trailing" secondItem="YWZ-cc-Sxb" secondAttribute="trailing" constant="82" id="zGg-6s-XkC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1Ac-rp-0uR"/>
                     </view>
+                    <connections>
+                        <outlet property="q1Button" destination="YWZ-cc-Sxb" id="kAP-lt-tVN"/>
+                        <outlet property="q2Button" destination="1JM-33-ETY" id="j0z-xf-yXB"/>
+                        <outlet property="q3Button" destination="Yk7-9b-HbR" id="kSN-Tt-z0O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GR9-IH-6Q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="1509"/>
+            <point key="canvasLocation" x="131.8359375" y="1508.59375"/>
         </scene>
         <!--View Controller1-->
         <scene sceneID="x2x-2A-Rfb">
             <objects>
-                <viewController id="kgs-zt-ZFB" customClass="ViewController1" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="q2" id="kgs-zt-ZFB" customClass="ViewController1" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8t6-8a-CNW">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -392,7 +459,7 @@
         <!--View Controller2-->
         <scene sceneID="kB5-6Z-BXj">
             <objects>
-                <viewController id="Z4p-PB-LM4" customClass="ViewController2" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="q3" id="Z4p-PB-LM4" customClass="ViewController2" customModule="VS2019" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wTh-ja-5gm">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -434,4 +501,7 @@
             <point key="canvasLocation" x="1622" y="652"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="560" height="367"/>
+    </resources>
 </document>

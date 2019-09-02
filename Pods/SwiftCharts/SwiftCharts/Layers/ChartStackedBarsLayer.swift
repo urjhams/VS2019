@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias ChartStackedBarItemModel = (quantity: Double, bgColor: UIColor)
+public typealias ChartStackedBarItemModel = (quantity: Double, bgColor: UIColor/*, name: String*/)
 
 open class ChartStackedBarModel: ChartBarModel {
 

@@ -285,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ud8-Ae-urV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="1509"/>
+            <point key="canvasLocation" x="1622.4609375" y="651.5625"/>
         </scene>
         <!--Pop Up Picker View Controller-->
         <scene sceneID="FNW-BJ-nhz">
@@ -356,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LC3-WM-E1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1603" y="1509"/>
+            <point key="canvasLocation" x="2304" y="652"/>
         </scene>
         <!--View Controller2-->
         <scene sceneID="kB5-6Z-BXj">
@@ -386,7 +386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Y7-O1-ksv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1622" y="652"/>
+            <point key="canvasLocation" x="3009.9609375" y="651.5625"/>
         </scene>
     </scenes>
 </document>

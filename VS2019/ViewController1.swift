@@ -15,8 +15,9 @@ class ViewController1: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var caloButton: UIButton!
     fileprivate var chart: Chart? // arc
+    
     var legendDescription = [(String, UIColor)]()
-    var calories = 25 {
+    var calories = 20 {
         didSet {
             caloButton.setTitle(String(calories), for: .normal)
             showChart(horizontal: false)
@@ -42,8 +43,8 @@ class ViewController1: UIViewController {
         let barModels = getModel()
         
         let (axisValues1, axisValues2) = (
-            stride(from: 0, through: 1200, by: 50).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)},
-            [ChartAxisValueString("", order: 0, labelSettings: labelSettings)] + barModels.map{$0.constant} + [ChartAxisValueString("", order: 10, labelSettings: labelSettings)]
+            stride(from: 0, through: 2600, by: 100).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)},
+            [ChartAxisValueString("", order: 0, labelSettings: labelSettings)] + barModels.map{$0.constant} + [ChartAxisValueString("", order: 10, labelSettings: labelSettings.defaultVertical())]
         )
         let (xValues, yValues) = horizontal ? (axisValues1, axisValues2) : (axisValues2, axisValues1)
         
@@ -107,6 +108,7 @@ class ViewController1: UIViewController {
         var models = [ChartStackedBarModel]()
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         for i in 0..<dictArray.count {
+            legendDescription = [(String, UIColor)]()
             let stack = ChartStackedBarModel(constant: ChartAxisValueString(dictArray[i][0],
                                                                             order: i + 1,
                                                                             labelSettings: labelSettings),
@@ -121,7 +123,6 @@ class ViewController1: UIViewController {
     private func getStackedBar(name: String, currentCalories: Double) -> [ChartStackedBarItemModel] {
         var result = [ChartStackedBarItemModel]()
         var currentColorIndex = 0
-        legendDescription = [(String, UIColor)]()
         for obj in Static.calories {
             var component = 0.0
             
@@ -147,14 +148,17 @@ class ViewController1: UIViewController {
             default:
                 break
             }
-            
-            result.append(ChartStackedBarItemModel(quantity: (obj.calories == currentCalories) ? component : 0,
-                                                   bgColor: Helper.colorArray[currentColorIndex]))
-            currentColorIndex += 1
-            if currentColorIndex == Helper.colorArray.count {
-                currentColorIndex = 0
+            if obj.calories == currentCalories {
+            result.append(ChartStackedBarItemModel(quantity: component,
+                                                   bgColor: Helper.colorArray[currentColorIndex]/*,
+                                                   name: obj.name*/))
+                
+                legendDescription.append((obj.name.components(separatedBy: ",")[0], Helper.colorArray[currentColorIndex]))
+                currentColorIndex += 1
+                if currentColorIndex == Helper.colorArray.count {
+                    currentColorIndex = 0
+                }
             }
-            legendDescription.append((obj.name.components(separatedBy: ",")[0], Helper.colorArray[currentColorIndex]))
             legendCollectionView.reloadData()
         }
         return result

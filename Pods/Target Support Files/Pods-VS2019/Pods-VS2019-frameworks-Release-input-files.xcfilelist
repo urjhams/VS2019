@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-VS2019/Pods-VS2019-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AnyChartiOS/AnyChartiOS.framework
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/JTMaterialTransition/JTMaterialTransition.framework
 ${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework

@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C94BEECE593EECCB1C31299967AA4E03"
-               BuildableName = "Pods-VS2019.framework"
-               BlueprintName = "Pods-VS2019"
+               BlueprintIdentifier = "F89C254011A53F9812219C58ACF9B9D2"
+               BuildableName = "JTMaterialTransition.framework"
+               BlueprintName = "JTMaterialTransition"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

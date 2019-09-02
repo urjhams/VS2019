@@ -7,6 +7,7 @@ target 'VS2019' do
 	pod 'SwiftCharts', '~> 0.6.5'
 	pod 'AnyChartiOS', '~> 1.0.3'
 	pod 'Charts'
+	pod 'JTMaterialTransition', '~> 2.0'
   # Pods for VS2019
 
   target 'VS2019Tests' do
